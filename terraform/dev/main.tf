@@ -31,7 +31,7 @@ locals {
 
 # Retrieving global variables from the Terraform module
 module "globalvars" {
-  source = "/home/ec2-user/environment/terraform/modules/globalvars"
+  source = "/home/ec2-user/environment/clo835_fall2022_assignment1/terraform/modules/globalvars"
 }
 
 
