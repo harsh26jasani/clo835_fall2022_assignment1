@@ -2,11 +2,7 @@ name: Deploy to ECR
 
 on: 
   push:
-    branches:
-    - master
-  pull_request:
-    branches:
-    - master
+    branches: [ master ]
 
 jobs:
   
@@ -14,6 +10,7 @@ jobs:
     
     name: Build Image
     runs-on: ubuntu-latest
+
    
     steps:
 
@@ -32,23 +29,12 @@ jobs:
     - name: Build, test, tag, and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: webapp
+        ECR_REPOSITORY_HARSH_MYSQL_DB: mysql_db
+        ECR_REPOSITORY_HARSH_WEBAPP: webapp
         IMAGE_TAG: HJ
       run: |
-        cd app
-        
-        #Docker build
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-     
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        
-    - name: Build, test, tag, and push image to Amazon ECR
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: mysql_db
-        IMAGE_TAG: HJ
-      run: |
-        cd mysql
-        #Docker build
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        # Docker build
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_HARSH_MYSQL_DB:$IMAGE_TAG -f Dockerfile_mysql .
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_HARSH_WEBAPP:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_HARSH_MYSQL_DB:$IMAGE_TAG
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_HARSH_WEBAPP:$IMAGE_TAG
