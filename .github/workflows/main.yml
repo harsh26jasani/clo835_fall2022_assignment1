@@ -31,7 +31,7 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY_HARSH_MYSQL_DB: mysql_db
         ECR_REPOSITORY_HARSH_WEBAPP: webapp
-        IMAGE_TAG: HJ
+        IMAGE_TAG: v0.1
       run: |
         # Docker build
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_HARSH_MYSQL_DB:$IMAGE_TAG -f Dockerfile_mysql .
