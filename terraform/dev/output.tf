@@ -1,3 +1,4 @@
 output "public_ip" {
-  value = aws_instance.Webserver_1.public_ip
-} 
+  description = "Public IP of EC2"
+  value       = aws_instance.k8s.public_ip
+}
