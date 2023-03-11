@@ -13,5 +13,3 @@ spec:
       value: "hj"
     ports:
     - containerPort: 3306
-  #imagePullSecrets:
-   #       - name: harsh26

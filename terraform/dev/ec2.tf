@@ -70,8 +70,8 @@ resource "aws_ecr_repository" "webapp" {
 
 
 
-resource "aws_ecr_repository" "db_mysql" {
-  name                 = "db_mysql"
+resource "aws_ecr_repository" "mysql_db" {
+  name                 = "mysql_db"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
