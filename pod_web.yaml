@@ -3,7 +3,6 @@ kind: Pod
 metadata:
   name: web
   labels:
-    app: employees
 spec:
   containers:
   - name: web
